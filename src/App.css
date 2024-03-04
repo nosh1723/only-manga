@@ -86,11 +86,12 @@
   background-color: rgb(229 231 235/var(--tw-bg-opacity));
 }
 
-
 .tags-name::-webkit-scrollbar {
   width: 10px;
 }
-
+#listchapters::-webkit-scrollbar{
+  width: 5px;
+}
 
 @media (min-width: 768px){
   .time-range-tab-item {

@@ -52,12 +52,6 @@ export const dataManga = async (id) => {
 }
 
 export const lastChapterSameAuthor = async (id) => {
-    // const mangaChapters = await request.get(`manga/${id}/aggregate`);
-    // const latestVolumes = Object.values(mangaChapters.data.volumes);
-    // let lastChapters
-    // if(latestVolumes.length)
-    //     lastChapters = Object.keys(latestVolumes[latestVolumes.length - 1].chapters);
-    // return lastChapters ? lastChapters[lastChapters.length - 1] : 'No Chapters'
     const getChapters = await request.get(`manga/${id}/feed`, {
         params: {
             limit: 400,
@@ -68,4 +62,18 @@ export const lastChapterSameAuthor = async (id) => {
         }
     })
     return getChapters.data.data[0] ? getChapters.data.data[0].attributes.chapter : undefined
+}
+
+export const getImageUrl = async (chapterId) => {
+    try {
+        const res = await request.get(`at-home/server/${chapterId}`)
+        const urls = res.data.chapter.data.map(url => `${res.data.baseUrl}/data/${res.data.chapter.hash}/${url}`) 
+        const getChapter = await request.get(`chapter/${chapterId}`)
+        return {
+            urls,
+            getChapter: getChapter.data.data
+        }
+    } catch (error) {
+        console.log(error);
+    }
 }

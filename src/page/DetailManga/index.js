@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import HotManga from '../../component/HotManga/HotManga'
 import { chaptersService, dataManga } from '../../apiService/chaptersService';
@@ -56,13 +56,13 @@ const DetailManga = () => {
                                 {chapters.length && chapters.map((chapter) => {
                                     const createAt = new Date(chapter.attributes.updatedAt)
                                     return (
-                                        <a key={"chapter-"+chapter.id} href="" className='w-full bg-gray-50 flex items-center border-l-4 border-solid border-gray-300 px-4 py-2 mb-1 hover:bg-opacity-70'>
+                                        <Link to={`/manga/${id}/chapter/${chapter.id}`} key={"chapter-"+chapter.id} className='w-full bg-gray-50 flex items-center border-l-4 border-solid border-gray-300 px-4 py-2 mb-1 hover:bg-opacity-70'>
                                             <h3 className='font-bold mr-4 min-w-[80px]'>Chap {chapter.attributes.chapter}</h3>
                                             <div className=' '>
                                                 <h4 className='leading-4 line-clamp-1'>{chapter.attributes.title ? chapter.attributes.title : manga.title}</h4>
                                                 <span className='text-black text-opacity-60 text-sm'>{(createAt.getDate() + ' - ' + (createAt.getMonth() + 1) + ' - ' + createAt.getFullYear())}</span>
                                             </div>
-                                        </a>
+                                        </Link>
                                     )
                                 })}
                             </div>
