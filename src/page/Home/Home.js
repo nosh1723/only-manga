@@ -1,32 +1,24 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 
 import * as apiService from '../../apiService/listmangaService'
-import Navbar from '../../component/Navbar/Navbar'
 import Manga from '../../component/Manga/Manga'
-import Button from '../../component/Button/Button'
 import HeadTitle from './HeadTitle/HeadTitle'
-import Footer from '../../component/Footer/Footer'
 
 
 export default function Home() {
   const [listManga, setListManga] = useState([])
 
-  const includedTagNames = ['Action', 'Romance'];
-  const excludedTagNames = ['Tragedy'];
   useEffect(() => {
     const fetchListManga= async () => {
       const result = await apiService.listManga()
-      setListManga(result)    
+      setListManga(result) 
     }
     fetchListManga()
   },[])
-
-  console.log(listManga);
-
+  // console.log(listManga[0].quantityChapter);
   return (
       <div className='relative w-full h-auto'>
-        <div className='w-full bg-gray-300 absolute z-[-100]'>
-          <Navbar />
+        <div className='w-full'>
           <div className='w-full h-[32rem] 2xl:h-[36rem] z-[-10] bg-no-repeat bg-center bg-cover' style={{backgroundImage: "url('https://embed.pixiv.net/spotlight.php?id=9439&lang=en')"}}></div>
 
           {/* last update manga */}
@@ -46,8 +38,6 @@ export default function Home() {
               </a>
             </div>
           </div>
-
-          <Footer />
         </div>
       </div>
   )
