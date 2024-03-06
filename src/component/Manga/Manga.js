@@ -14,7 +14,7 @@ const Manga = ({manga}) => {
                     <a href="#" className='text-gray-800 font-bold text-sm mb-1 line-clamp-2'>{manga.title}</a>
                     <h4 className='text-xs uppercase tracking-wide text-gray-700 line-clamp-1'>
                         <a href="#">
-                            <span className='font-semibold'>{'C. ' +manga.quantityChapter}</span>
+                            <span className='font-semibold'>{manga.quantityChapter ? 'C. ' +manga.quantityChapter : 'C. 1'}</span>
                             <pre className='inline-block'> - </pre>
                             <span>{manga.updatedAt}</span>
                         </a>

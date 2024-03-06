@@ -3,6 +3,7 @@ import React, {useState, useEffect, useContext} from 'react'
 import * as apiService from '../../apiService/listmangaService'
 import Manga from '../../component/Manga/Manga'
 import HeadTitle from './HeadTitle/HeadTitle'
+import { lastChapterSameAuthor } from '../../apiService/chaptersService'
 
 
 export default function Home() {
@@ -15,7 +16,7 @@ export default function Home() {
     }
     fetchListManga()
   },[])
-  // console.log(listManga[0].quantityChapter);
+  // console.log(listManga);
   return (
       <div className='relative w-full h-auto'>
         <div className='w-full'>

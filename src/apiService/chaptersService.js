@@ -1,6 +1,6 @@
 import request from '../utils/request';
 
-export const chaptersService = async (mangaId) => {
+export const chaptersService = async (mangaId, chapterId) => {
     try {
         const getChapters = await request.get(`manga/${mangaId}/feed`, {
             params: {
@@ -11,7 +11,18 @@ export const chaptersService = async (mangaId) => {
                 'order[chapter]': 'desc'  
             }
         })
-        return getChapters.data.data
+        let count = 0
+        getChapters.data.data.find(c => {
+            count++
+            return c.id === chapterId
+        }   )
+        const previous =  getChapters.data.data[count]
+        const next =  getChapters.data.data[count - 2]
+        return {
+            data: getChapters.data.data,
+            previous, 
+            next
+        }
     } catch (error) {
         console.log(error);
     }

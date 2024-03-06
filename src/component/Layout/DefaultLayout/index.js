@@ -10,7 +10,7 @@ export default function DefaultLayout({children}) {
     
   return (
     <div className="w-full bg-gray-300 relative z-0">
-        {children.type.name === 'Home' || children.type.name === 'ReadManga' ? <Navbar scroll={scroll} isHome={true}></Navbar> : <Navbar styleData='text-black opacity-60'></Navbar>}
+        {!(children.type.name === 'ReadManga') ? (children.type.name === 'Home' ? <Navbar scroll={scroll} isHome={true}></Navbar> : <Navbar styleData='text-black opacity-60'></Navbar>) : <Navbar isHome={true} isRead={true}></Navbar>}
         <div>
             {children}
         </div>

@@ -1,21 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function Navbar({scroll, isHome}) {
+export default function Navbar({scroll, isHome, isRead}) {
     return (
         <div>
-            <nav data-v-3ed40230 className={`fixed px-2 z-40 top-0 left-0 w-full ${isHome ? (scroll < 1 ? '' : 'bg-white bg-opacity-60 backdrop-blur shadow-lg') : 'bg-white bg-opacity-60 backdrop-blur shadow-lg'}`}>
+            <nav data-v-3ed40230 className={`fixed px-2 z-40 top-0 left-0 w-full ${!isRead ? (isHome ? (scroll < 1 ? '' : 'bg-white bg-opacity-60 backdrop-blur shadow-lg') : 'bg-white bg-opacity-60 backdrop-blur shadow-lg') : 'relative bg-[#191A1C]'}`}>
                 <div className='max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl mx-auto'>
                     <div className='flex justify-between items-stretch py-2 gap-4'>
-                        <div className='flex-1 items-center gap-3 hidden lg:flex'>
-                            <a data-v-3ed40230 className='nav-link text-yellow-300 hover:text-yellow-200' href="#">CẮT WEBTOON</a>
-                            <a data-v-3ed40230 className={`nav-link ${isHome ? (scroll > 0 ? 'text-black opacity-60' : 'nav-link-dark') : 'text-black opacity-60'} `} href="#">DISCORD</a>
-                            <a data-v-3ed40230 className={`nav-link ${isHome ? (scroll > 0 ? 'text-black opacity-60' : 'nav-link-dark') : 'text-black opacity-60'}`} href="#">HỘI KÍN</a>
-                            <a data-v-3ed40230 className={`nav-link ${isHome ? (scroll > 0 ? 'text-black opacity-60' : 'nav-link-dark') : 'text-black opacity-60'}`} href="#">ĐĂNG TRUYỆN</a>
-                            <a data-v-3ed40230 className={`nav-link ${isHome ? (scroll > 0 ? 'text-black opacity-60' : 'nav-link-dark') : 'text-black opacity-60'}`} href="#">TIN TỨC</a>
-                        </div>
-                        <div className='flex-1 flex lg:justify-center items-center max-w-full'>
-                            <Link data-v-3ed40230 className={`font-display font-extrabold uppercase select-none rounded-full flex items-center h-11 router-link-exact-active router-link-active ${isHome ? (scroll > 0 ? 'text-black text-opacity-60' : 'nav-link-dark') : 'text-black text-opacity-60'}  `} to="/">Cứu truyện</Link>
+                        <div className='flex-1 flex lg:justify-start items-center max-w-full'>
+                            <Link data-v-3ed40230 className={`font-display font-extrabold uppercase select-none rounded-full flex items-center h-11 router-link-exact-active router-link-active ${isHome ? (scroll > 0 ? 'text-black text-opacity-60' : 'nav-link-dark') : 'text-black text-opacity-60'}  `} to="/">JUST MANGA</Link>
                         </div>
                         <div data-v-3ed40230 className='flex-1 flex justify-end max-w-full'>
                             <button data-v-3ed40230 className={`button-circle px-3 py-2 mr-2 h-11 w-11 flex justify-center items-center ${isHome ? (scroll > 0 ? 'button-transparent-dark' : 'bg-slate-500 opacity-70') : 'button-transparent-dark'} `}>

@@ -19,22 +19,17 @@ export const listManga = async (id) => {
             if(diffResult > 30) updatedAt = Math.floor(diffResult / 30) + " month ago"
             else if(diffResult < 1) updatedAt = "1 day ago"
             else updatedAt = diffResult + " day ago"
-
-            const mangaChapters = await request.get(`manga/${manga.id}/aggregate`);
-            const latestVolumes = Object.values(mangaChapters.data.volumes);
-            const lastChapters = Object.keys(latestVolumes[latestVolumes.length - 1].chapters);
-            const lastChapter = lastChapters[lastChapters.length - 1];
-          //   const getChapters = await request.get(`manga/${manga.id}/feed`, {
-          //     params: {
-          //         limit: 400,
-          //         offset: 0,
-          //         translatedLanguage: ['en'],
-          //         'order[volume]': 'desc',
-          //         'order[chapter]': 'desc'
-          //     }
-          // })
-          //   const lastChapters = Object.values(getChapters.data.data)
-          //   const lastChapter = lastChapters[0]
+            
+            const getChapters = await request.get(`manga/${manga.id}/feed`, {
+              params: {
+                limit: 400,
+                offset: 0,
+                translatedLanguage: ['en'],
+                'order[volume]': 'desc',
+                'order[chapter]': 'desc'  
+              }
+            })
+            const lastChapter = getChapters.data.data[0] ? getChapters.data.data[0].attributes.chapter : undefined
 
             const coverArtId = manga.relationships.find((relation) => relation.type === 'cover_art').id;
             const coverResponse = await request.get(`cover/${coverArtId}`);

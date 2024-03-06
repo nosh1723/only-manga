@@ -21,6 +21,7 @@ const DetailManga = () => {
         }
         fetchManga()
     }, [reRender]) 
+
     const handleClick =() => {
         reRender ? setReRender(false) : setReRender(true)
     }
@@ -44,7 +45,7 @@ const DetailManga = () => {
                             </div>
                             <div className='absolute bottom-0'>
                                 <button className='px-6 py-2 uppercase font-bold bg-slate-400 rounded-md'>Add to library</button>
-                                <button className='px-6 py-2 ml-5 uppercase font-bold rounded-md hover:bg-gray-600 hover:text-white text-black text-opacity-60'>Read now!</button>
+                                <Link to={chapters.data ? `/manga/${id}/chapter/${chapters.data[chapters.data.length - 1].id}` : ''} className='px-6 py-2 ml-5 uppercase font-bold rounded-md hover:bg-gray-600 hover:text-white text-black text-opacity-60'>Read now!</Link>
                             </div>
                         </div>
                     </div>
@@ -53,11 +54,11 @@ const DetailManga = () => {
                         <div className='w-[70%] h-full pr-10'>
                             <p className='pb-4 pt-10 text-sm text-opacity-60 text-black text-justify'>{manga.description}</p>
                             <div className='w-full max-h-[600px] mt-10 overflow-hidden overflow-y-scroll bg-white'>
-                                {chapters.length && chapters.map((chapter) => {
+                                {chapters.data && chapters.data.map((chapter) => {
                                     const createAt = new Date(chapter.attributes.updatedAt)
                                     return (
                                         <Link to={`/manga/${id}/chapter/${chapter.id}`} key={"chapter-"+chapter.id} className='w-full bg-gray-50 flex items-center border-l-4 border-solid border-gray-300 px-4 py-2 mb-1 hover:bg-opacity-70'>
-                                            <h3 className='font-bold mr-4 min-w-[80px]'>Chap {chapter.attributes.chapter}</h3>
+                                            <h3 className='font-bold mr-4 min-w-[80px]'>Chap {chapter.attributes.chapter ? chapter.attributes.chapter : '1'}</h3>
                                             <div className=' '>
                                                 <h4 className='leading-4 line-clamp-1'>{chapter.attributes.title ? chapter.attributes.title : manga.title}</h4>
                                                 <span className='text-black text-opacity-60 text-sm'>{(createAt.getDate() + ' - ' + (createAt.getMonth() + 1) + ' - ' + createAt.getFullYear())}</span>
@@ -68,7 +69,7 @@ const DetailManga = () => {
                             </div>
                         </div>
                         <div className='w-[30%] h-full px-5 py-3 bg-white rounded-lg'>
-                            <h2 className='uppercase font-bold mb-3'>Cung tac gia</h2>
+                            <h2 className='uppercase font-bold mb-3'>Same author</h2>
                             <div>
                                 {manga.mangaSameAuthor && manga.mangaSameAuthor.length > 0 && 
                                 manga.mangaSameAuthor.map(m => (
