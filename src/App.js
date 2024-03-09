@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { publicRoutes } from './routes';
 
 import { DefaultLayout } from './component/Layout';
@@ -15,7 +15,6 @@ function App() {
             return <Route key={index} path={route.path} element={<Layout><Page></Page></Layout>} />
           })}
         </Routes>
-        cccc
       </div>
     </Router>
   );
