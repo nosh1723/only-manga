@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 
-import * as apiService from "../../apiService/listmangaService";
+// import * as apiService from "../../apiService/listmangaService";
 import Manga from "../../component/Manga/Manga";
 import HeadTitle from "./HeadTitle/HeadTitle";
-import { lastChapterSameAuthor } from "../../apiService/chaptersService";
+// import { lastChapterSameAuthor } from "../../apiService/chaptersService";
 import axios from "axios";
 
 export default function Home() {
