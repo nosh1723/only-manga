@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-// import * as apiService from "../../apiService/listmangaService";
+import * as apiService from "../../apiService/listmangaService";
 import Manga from "../../component/Manga/Manga";
 import HeadTitle from "./HeadTitle/HeadTitle";
-// import { lastChapterSameAuthor } from "../../apiService/chaptersService";
+import { lastChapterSameAuthor } from "../../apiService/chaptersService";
 import axios from "axios";
 
 export default function Home() {
@@ -11,14 +11,12 @@ export default function Home() {
 
   useEffect(() => {
     const fetchListManga = async () => {
-      const result = await axios.get(
-        "https://dark-gray-fly-tam.cyclic.app/api/listmanga"
-      );
-      setListManga(result.data);
+      const result = await apiService.listManga();
+      setListManga(result);
     };
     fetchListManga();
   }, []);
-  // console.log(listManga.data);
+  console.log(listManga);
   return (
     <div className="relative w-full h-auto">
       <div className="w-full">
