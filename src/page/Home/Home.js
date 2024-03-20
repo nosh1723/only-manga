@@ -11,8 +11,8 @@ export default function Home() {
 
   useEffect(() => {
     const fetchListManga = async () => {
-      const result = await apiService.listManga();
-      setListManga(result);
+      const result = await axios.get("http://localhost:6969/list-manga");
+      setListManga(result.data);
     };
     fetchListManga();
   }, []);
