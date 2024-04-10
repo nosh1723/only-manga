@@ -1,35 +1,4 @@
-.nav-link[data-v-3ed40230] {
-  white-space: nowrap;
-  font-size: .75rem;
-  line-height: 1rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
 
-.nav-link-dark[data-v-3ed40230] {
-  color: white;
-}
-
-.nav-link-dark[data-v-3ed40230]:hover {
-  color: rgba(255, 255, 255, .8);
-}
-
-.button-transparent-dark{
-  background-color: rgba(154, 156, 156, 0.35);
-}
-.button-transparent-dark:hover {
-  background-color: rgba(76, 71, 71, 0.5);
-  color: rgba(255, 255, 255, .5);
-  ;
-}
-
-.button-circle {
-  border-radius: 9999px;
-}
-
-.bg-hero {
-  background: linear-gradient(0deg, #000000e6, rgba(0, 0, 0, .863) 5.79%, rgba(0, 0, 0, .802) 10.88%, rgba(0, 0, 0, .721) 15.63%, rgba(0, 0, 0, .627) 20.37%, rgba(0, 0, 0, .523) 25.46%, rgba(0, 0, 0, .416) 31.25%, rgba(0, 0, 0, .311) 38.08%, rgba(0, 0, 0, .213) 46.3%, rgba(0, 0, 0, .128) 56.25%, #0000000f 68.29%, rgba(0, 0, 0, .016) 82.75%, #0000);
-}
 .button {
   white-space: nowrap;
   border-radius: .5rem;

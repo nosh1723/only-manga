@@ -3,20 +3,28 @@ import React, { useState, useEffect } from "react";
 import * as apiService from "../../apiService/listmangaService";
 import Manga from "../../component/Manga/Manga";
 import HeadTitle from "./HeadTitle/HeadTitle";
-import { lastChapterSameAuthor } from "../../apiService/chaptersService";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { Puff } from 'react-loader-spinner'
 
 export default function Home() {
-  const [listManga, setListManga] = useState([]);
+  const [listManga, setListManga] = useState({
+    isLoading: true,
+    mangas: []
+  });
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchListManga = async () => {
-      const result = await axios.get("http://localhost:6969/list-manga");
-      setListManga(result.data);
+      const result = await apiService.listmanga('', 12);
+      setListManga({ ...listManga, mangas: result });
     };
     fetchListManga();
+    listManga.isLoading = false
   }, []);
-  console.log(listManga);
+
+  const handleSeeMore = async () => {
+    navigate("/manga")
+  }
   return (
     <div className="relative w-full h-auto">
       <div className="w-full">
@@ -33,15 +41,24 @@ export default function Home() {
           <HeadTitle />
           <div className="relative container mx-auto">
             <div className=" container snap-x snap-mandatory overflow-x-scroll hide-scrollbar mx-auto mb-6 grid grid-flow-col grid-rows-2 gap-4 h-full py-2">
-              {listManga.map((manga) => (
+              <Puff
+                height="100"
+                width="100"
+                color="#4fa94d"
+                ariaLabel="audio-loading"
+                wrapperStyle={{ margin: "auto" }}
+                wrapperClass="wrapper-class"
+                visible={listManga.isLoading ? true : false}
+              />
+              {listManga.mangas.map((manga) => (
                 <Manga key={manga.id} manga={manga} />
               ))}
             </div>
           </div>
           <div className="container mx-auto flex justify-end mb-16">
-            <a
-              href="#"
-              className="flex items-center text-gray-600 transition text-sm font-bold"
+            <div
+              className="flex items-center text-gray-600 transition text-sm font-bold cursor-pointer"
+              onClick={handleSeeMore}
             >
               <span>
                 <svg
@@ -61,7 +78,7 @@ export default function Home() {
                 </svg>
               </span>
               <span>See More</span>
-            </a>
+            </div>
           </div>
         </div>
       </div>
